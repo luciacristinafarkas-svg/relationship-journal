@@ -6,261 +6,604 @@
   <title>Jurnal Relațional</title>
   <style>
     :root{
-      --bg:#0b1020; --card:#121b3a; --txt:#eef2ff; --muted:#b9c4ff;
-      --border: rgba(255,255,255,.12);
+      --bg0:#070A14;
+      --bg1:#0B1020;
+      --card: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.10);
+      --txt:#EEF2FF;
+      --muted: rgba(238,242,255,.70);
+
+      --pink:#FF4FD8;
+      --cyan:#59D6FF;
+      --green:#4DFF8A;
+      --yellow:#FFD34D;
+      --red:#FF5D5D;
+
+      --shadow: 0 20px 80px rgba(0,0,0,.55);
+      --radius: 18px;
     }
-    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--txt);}
-    .wrap{max-width:980px;margin:0 auto;padding:24px;}
-    h1{font-size:22px;margin:0 0 12px;}
-    .grid{display:grid;grid-template-columns:1fr;gap:16px;}
-    @media(min-width:900px){.grid{grid-template-columns:1.2fr .8fr;}}
-    .card{background:rgba(18,27,58,.75);border:1px solid var(--border);border-radius:16px;padding:16px;}
-    label{display:block;margin:12px 0 6px;color:var(--muted);font-size:13px;}
-    select, textarea, input{width:100%;box-sizing:border-box;background:rgba(255,255,255,.06);color:var(--txt);
-      border:1px solid var(--border);border-radius:12px;padding:10px;outline:none;}
-    textarea{min-height:90px;resize:vertical;}
-    button{cursor:pointer;border:none;border-radius:12px;padding:10px 14px;font-weight:600;background:#ff4fd8;color:#12051a;}
-    button:active{transform:translateY(1px);}
-    .row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;}
-    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border);font-size:12px;color:var(--muted);}
-    .scoreBox{padding:14px;border-radius:16px;border:1px solid var(--border);}
-    .scoreBig{font-size:34px;font-weight:800;margin:0;}
-    .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--border);overflow:hidden;margin-top:10px;}
-    .bar > div{height:100%;width:0%;}
-    .list{margin:10px 0 0;padding:0;list-style:none;}
-    .list li{padding:10px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:10px;}
-    .small{color:var(--muted);font-size:12px;}
-    .danger{color:#ffb4b4;}
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Arial;
+      color:var(--txt);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(255,79,216,.12), transparent 55%),
+        radial-gradient(900px 600px at 80% 30%, rgba(89,214,255,.10), transparent 55%),
+        radial-gradient(900px 600px at 30% 90%, rgba(77,255,138,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px;}
+    header{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    h1{margin:0;font-size:22px;letter-spacing:.2px;}
+    .subtitle{margin:6px 0 0;color:var(--muted);font-size:13px;max-width:720px}
+
+    .pillbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+    .pill{
+      padding:8px 10px;border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--stroke);
+      color:var(--muted);
+      font-size:12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    @media(min-width:980px){
+      .grid{grid-template-columns: 1.25fr .75fr;}
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      padding:16px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(600px 300px at 10% 10%, rgba(255,79,216,.20), transparent 45%),
+        radial-gradient(600px 300px at 90% 30%, rgba(89,214,255,.16), transparent 50%);
+      opacity:.45;
+      pointer-events:none;
+      filter: blur(16px);
+    }
+    .card > *{position:relative}
+
+    .row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;}
+    .two{display:grid;grid-template-columns:1fr;gap:12px;}
+    @media(min-width:680px){.two{grid-template-columns:1fr 1fr;}}
+
+    label{display:block;margin:10px 0 6px;color:var(--muted);font-size:12px;}
+    input, textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.06);
+      color:var(--txt);
+      outline:none;
+    }
+    textarea{min-height:92px;resize:vertical;}
+
+    .q{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:12px;
+      transition: transform .12s ease, border-color .12s ease;
+    }
+    .q:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.18);}
+    .qtop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+    .qtitle{font-size:14px;line-height:1.3;margin:0;}
+    .qmeta{display:flex;gap:8px;align-items:center;}
+    .badge{
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.05);
+      font-size:12px;color:var(--muted);
+      white-space:nowrap;
+    }
+    .emoji{font-size:18px}
+
+    .slider{
+      width:100%;
+      margin-top:10px;
+      accent-color: var(--pink);
+    }
+    .scale{
+      display:flex;justify-content:space-between;margin-top:6px;color:var(--muted);font-size:11px;
+    }
+
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+    button{
+      cursor:pointer;
+      border:none;
+      border-radius:14px;
+      padding:10px 14px;
+      font-weight:700;
+      color:#12051a;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      transition: transform .08s ease, opacity .12s ease;
+    }
+    button:active{transform: translateY(1px);}
+    .ghost{
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      border:1px solid var(--stroke);
+    }
+    .msg{margin:10px 0 0;color:var(--muted);font-size:12px;}
+
+    /* Dashboard */
+    .dashTop{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;}
+    .scoreWrap{display:flex;gap:14px;align-items:center;}
+    .scoreNum{font-size:34px;font-weight:900;margin:0;line-height:1;}
+    .scoreLbl{color:var(--muted);font-size:12px;margin-top:4px;}
+    .mini{
+      padding:8px 10px;border-radius:14px;border:1px solid var(--stroke);
+      background:rgba(255,255,255,.05);
+      color:var(--muted);font-size:12px;
+    }
+
+    .ring{
+      width:84px;height:84px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.04);
+      position:relative;
+      overflow:hidden;
+    }
+    .ring canvas{display:block}
+    .ringCenter{
+      position:absolute; inset:0; display:grid; place-items:center;
+      font-size:12px; color:var(--muted);
+      pointer-events:none;
+    }
+
+    .chart{
+      margin-top:12px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:10px;
+    }
+    .chartHeader{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;}
+    .chartTitle{margin:0;font-size:13px;color:var(--muted)}
+    .legend{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px}
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--pink);display:inline-block}
+
+    ul{list-style:none;padding:0;margin:10px 0 0;}
+    li{
+      padding:10px 0;
+      border-top:1px solid var(--stroke);
+      display:flex;justify-content:space-between;gap:10px;
+    }
+    .small{color:var(--muted);font-size:12px}
+    .right{text-align:right}
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <h1>Jurnal: Cum m-a făcut partenerul să mă simt azi</h1>
+    <header>
+      <div>
+        <h1>Jurnal Relațional</h1>
+        <p class="subtitle">Completezi 1×/zi. Primești un scor (0–100) + trend. Totul se salvează local în browser.</p>
+      </div>
+      <div class="pillbar">
+        <div class="pill">Scală: 1 → 5</div>
+        <div class="pill" id="streakPill">0 zile</div>
+        <div class="pill" id="avgPill">Medie 7 zile: —</div>
+      </div>
+    </header>
+
     <div class="grid">
 
       <!-- FORM -->
-      <div class="card">
-        <div class="row">
-          <div class="pill">Scală 1 (deloc) → 5 (foarte mult)</div>
-          <div class="pill">Datele se salvează local în browser</div>
+      <section class="card">
+        <div class="two">
+          <div>
+            <label>Data</label>
+            <input id="date" type="date" />
+          </div>
+          <div>
+            <label>Mod</label>
+            <input value="Jurnal personal (fără evaluări externe)" disabled />
+          </div>
         </div>
 
-        <label>Data</label>
-        <input id="date" type="date" />
-
-        <label>1) M-am simțit respectat/ă</label>
-        <select id="q1"></select>
-
-        <label>2) M-am simțit ascultat/ă</label>
-        <select id="q2"></select>
-
-        <label>3) M-am simțit în siguranță emoțional</label>
-        <select id="q3"></select>
-
-        <label>4) Am simțit susținere / încurajare</label>
-        <select id="q4"></select>
-
-        <label>5) M-am simțit apropiat/ă (conexiune)</label>
-        <select id="q5"></select>
-
-        <label>6) M-am simțit criticat/ă sau invalidat/ă (întrebare inversă)</label>
-        <select id="q6"></select>
+        <div id="questions" style="margin-top:12px; display:grid; gap:12px;"></div>
 
         <label>Notițe (opțional)</label>
-        <textarea id="notes" placeholder="Ce s-a întâmplat azi? Context, exemple, emoții..."></textarea>
+        <textarea id="notes" placeholder="Context, exemple, emoții, ce ți-ai dori diferit..."></textarea>
 
-        <div class="row" style="margin-top:14px;">
+        <div class="btnrow">
           <button id="saveBtn">Save day</button>
-          <button id="clearBtn" style="background:rgba(255,255,255,.10);color:var(--txt);border:1px solid var(--border);">Clear all data</button>
+          <button id="exportBtn" class="ghost">Export CSV</button>
+          <button id="clearBtn" class="ghost">Clear all</button>
         </div>
 
-        <p class="small" id="msg" style="margin-top:10px;"></p>
-      </div>
+        <p class="msg" id="msg"></p>
+      </section>
 
       <!-- DASHBOARD -->
-      <div class="card">
-        <div id="scoreBox" class="scoreBox">
-          <div class="row">
-            <div>
-              <div class="small">Scor azi</div>
-              <p class="scoreBig" id="scoreVal">—</p>
-              <div class="small" id="scoreLabel">Completează formularul și salvează.</div>
+      <aside class="card">
+        <div class="dashTop">
+          <div class="scoreWrap">
+            <div class="ring">
+              <canvas id="ring" width="84" height="84"></canvas>
+              <div class="ringCenter">score</div>
             </div>
-            <div class="pill" id="trendPill">—</div>
+            <div>
+              <p class="scoreNum" id="scoreVal">—</p>
+              <div class="scoreLbl" id="scoreLabel">Completează și salvează.</div>
+            </div>
           </div>
-          <div class="bar"><div id="barFill"></div></div>
+          <div class="mini" id="zonePill">Zonă: —</div>
         </div>
 
-        <h3 style="margin:16px 0 8px;">Istoric</h3>
-        <ul class="list" id="history"></ul>
-        <p class="small">Tip: urmărește trendul pe 7–14 zile, nu o zi izolată.</p>
-      </div>
+        <div class="chart">
+          <div class="chartHeader">
+            <p class="chartTitle">Trend (ultimele 14 zile)</p>
+            <div class="legend"><span class="dot"></span> scor</div>
+          </div>
+          <canvas id="trend" width="420" height="140" style="width:100%;height:auto;margin-top:8px;"></canvas>
+          <div class="small" style="margin-top:8px;">Tip: urmărește trendul, nu o zi izolată.</div>
+        </div>
+
+        <h3 style="margin:14px 0 6px; font-size:14px;">Istoric (ultimele 10)</h3>
+        <ul id="history"></ul>
+      </aside>
 
     </div>
   </div>
 
 <script>
-  // ---------- Helpers ----------
+  // ---------------- Config ----------------
+  const KEY = "rel_journal_v2";
+
+  const QUESTIONS = [
+    { id:"q1", text:"M-am simțit respectat/ă", positive:true },
+    { id:"q2", text:"M-am simțit ascultat/ă", positive:true },
+    { id:"q3", text:"M-am simțit în siguranță emoțional", positive:true },
+    { id:"q4", text:"Am simțit susținere / încurajare", positive:true },
+    { id:"q5", text:"M-am simțit apropiat/ă (conexiune)", positive:true },
+    { id:"q6", text:"M-am simțit criticat/ă sau invalidat/ă", positive:false } // inversă
+  ];
+
+  const EMOJI = {
+    1:{e:"😞", t:"deloc"},
+    2:{e:"😕", t:"puțin"},
+    3:{e:"😐", t:"ok"},
+    4:{e:"🙂", t:"mult"},
+    5:{e:"😍", t:"foarte mult"}
+  };
+
+  // ---------------- Helpers ----------------
   const $ = (id) => document.getElementById(id);
+  const clamp = (n,min,max)=> Math.max(min, Math.min(max,n));
 
-  function rangeOptions(selectEl){
-    selectEl.innerHTML = "";
-    for(let i=1;i<=5;i++){
-      const opt = document.createElement("option");
-      opt.value = i;
-      opt.textContent = i;
-      selectEl.appendChild(opt);
-    }
-    selectEl.value = 3; // default neutral
+  function todayISO(){
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${yyyy}-${mm}-${dd}`;
   }
-
-  function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
-
-  // Gradient color based on score
-  function scoreColor(score){
-    // 0..100 -> red->yellow->green
-    if(score < 40) return "#ff5d5d";
-    if(score < 70) return "#ffd34d";
-    return "#4dff8a";
-  }
-
-  function scoreLabel(score){
-    if(score < 40) return "Zonă de alertă (roșu)";
-    if(score < 70) return "Zonă instabilă (galben)";
-    return "Zonă bună (verde)";
-  }
-
-  // ---------- Scoring ----------
-  // q1..q5 positive (1..5), q6 negative (1..5 -> invert)
-  function computeScore(entry){
-    const pos = [entry.q1, entry.q2, entry.q3, entry.q4, entry.q5].map(Number);
-    const neg = Number(entry.q6);
-
-    // invert q6: 1->5, 5->1
-    const q6inv = 6 - neg;
-
-    // Normalize each 1..5 to 0..100
-    const to100 = (x) => ((x - 1) / 4) * 100;
-
-    const scores = pos.map(to100);
-    scores.push(to100(q6inv));
-
-    // Simple average (you can add weights later)
-    const avg = scores.reduce((a,b)=>a+b,0) / scores.length;
-
-    return Math.round(avg);
-  }
-
-  // ---------- Storage ----------
-  const KEY = "rel_journal_v1";
 
   function loadAll(){
-    try{
-      return JSON.parse(localStorage.getItem(KEY)) || [];
-    } catch(e){
-      return [];
-    }
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+    catch { return []; }
   }
 
   function saveAll(items){
     localStorage.setItem(KEY, JSON.stringify(items));
   }
 
-  // ---------- UI ----------
-  function renderDashboard(items){
-    // sort by date desc
-    const sorted = [...items].sort((a,b)=> (a.date < b.date ? 1 : -1));
-    const history = $("history");
-    history.innerHTML = "";
+  function to100(x){ return ((x - 1) / 4) * 100; }
 
-    if(sorted.length === 0){
-      $("scoreVal").textContent = "—";
-      $("scoreLabel").textContent = "Nu ai încă intrări salvate.";
-      $("trendPill").textContent = "0 zile";
-      $("barFill").style.width = "0%";
-      $("barFill").style.background = "transparent";
-      return;
+  function computeScore(entry){
+    const perQ = QUESTIONS.map(q => {
+      const raw = Number(entry[q.id]);
+      const val = q.positive ? raw : (6 - raw); // invert
+      return to100(val);
+    });
+    const avg = perQ.reduce((a,b)=>a+b,0) / perQ.length;
+    return Math.round(avg);
+  }
+
+  function scoreColor(score){
+    if(score < 40) return getCSS("--red");
+    if(score < 70) return getCSS("--yellow");
+    return getCSS("--green");
+  }
+
+  function zoneText(score){
+    if(score < 40) return "Roșu";
+    if(score < 70) return "Galben";
+    return "Verde";
+  }
+
+  function scoreLabel(score){
+    if(score < 40) return "Zonă de alertă: observă tiparele și protejează-ți energia.";
+    if(score < 70) return "Zonă instabilă: mix de bine și tensiuni.";
+    return "Zonă bună: conectare și siguranță.";
+  }
+
+  function getCSS(varName){
+    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  }
+
+  function movingAvg(items, days){
+    const sorted = [...items].sort((a,b)=> a.date.localeCompare(b.date));
+    const last = sorted.slice(-days);
+    if(last.length === 0) return null;
+    const avg = last.reduce((s,x)=>s + x.score, 0) / last.length;
+    return Math.round(avg);
+  }
+
+  function streak(items){
+    const set = new Set(items.map(x=>x.date));
+    let d = new Date();
+    let count = 0;
+    while(true){
+      const iso = d.toISOString().slice(0,10);
+      if(set.has(iso)){
+        count++;
+        d.setDate(d.getDate()-1);
+      } else break;
     }
+    return count;
+  }
 
-    const latest = sorted[0];
-    const latestScore = latest.score;
+  // ---------------- UI build: questions ----------------
+  function buildQuestions(){
+    const wrap = $("questions");
+    wrap.innerHTML = "";
+    QUESTIONS.forEach((q) => {
+      const div = document.createElement("div");
+      div.className = "q";
+      div.innerHTML = `
+        <div class="qtop">
+          <p class="qtitle">${q.text}${q.positive ? "" : " (inversă)"}</p>
+          <div class="qmeta">
+            <span class="emoji" id="${q.id}_emoji">😐</span>
+            <span class="badge" id="${q.id}_badge">3 · ok</span>
+          </div>
+        </div>
+        <input class="slider" id="${q.id}" type="range" min="1" max="5" step="1" value="3" />
+        <div class="scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      `;
+      wrap.appendChild(div);
 
-    $("scoreVal").textContent = latestScore;
-    $("scoreLabel").textContent = scoreLabel(latestScore);
-    $("trendPill").textContent = `${sorted.length} zile`;
-    $("barFill").style.width = `${clamp(latestScore,0,100)}%`;
-    $("barFill").style.background = scoreColor(latestScore);
-
-    // show last 10
-    sorted.slice(0,10).forEach(it=>{
-      const li = document.createElement("li");
-      const left = document.createElement("div");
-      left.innerHTML = `<div><strong>${it.date}</strong></div><div class="small">${(it.notes||"").slice(0,40)}${(it.notes||"").length>40?"…":""}</div>`;
-      const right = document.createElement("div");
-      right.innerHTML = `<div style="font-weight:800;color:${scoreColor(it.score)}">${it.score}</div><div class="small">${scoreLabel(it.score)}</div>`;
-      li.appendChild(left);
-      li.appendChild(right);
-      history.appendChild(li);
+      const slider = $(q.id);
+      slider.addEventListener("input", () => updateQBadge(q.id, Number(slider.value)));
     });
   }
 
-  function setTodayIfEmpty(){
-    if(!$("date").value){
-      const d = new Date();
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth()+1).padStart(2,"0");
-      const dd = String(d.getDate()).padStart(2,"0");
-      $("date").value = `${yyyy}-${mm}-${dd}`;
-    }
+  function updateQBadge(qid, val){
+    const e = EMOJI[val];
+    $(`${qid}_emoji`).textContent = e.e;
+    $(`${qid}_badge`).textContent = `${val} · ${e.t}`;
   }
 
-  // ---------- Init ----------
-  ["q1","q2","q3","q4","q5","q6"].forEach(id => rangeOptions($(id)));
-  setTodayIfEmpty();
-  renderDashboard(loadAll());
+  // ---------------- Drawing: ring + trend ----------------
+  function drawRing(score){
+    const c = $("ring");
+    const ctx = c.getContext("2d");
+    const W = c.width, H = c.height;
+    ctx.clearRect(0,0,W,H);
 
-  // ---------- Events ----------
-  $("saveBtn").addEventListener("click", () => {
-    const entry = {
-      date: $("date").value,
-      q1: Number($("q1").value),
-      q2: Number($("q2").value),
-      q3: Number($("q3").value),
-      q4: Number($("q4").value),
-      q5: Number($("q5").value),
-      q6: Number($("q6").value),
-      notes: $("notes").value.trim()
-    };
+    const cx=W/2, cy=H/2, r=30;
+    const bgStroke = "rgba(255,255,255,.10)";
+    const col = score == null ? "rgba(255,255,255,.22)" : scoreColor(score);
 
-    if(!entry.date){
-      $("msg").textContent = "Te rog selectează o dată.";
-      $("msg").className = "small danger";
+    // background circle
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = bgStroke;
+    ctx.beginPath();
+    ctx.arc(cx,cy,r,0,Math.PI*2);
+    ctx.stroke();
+
+    if(score == null) return;
+
+    // progress arc
+    const start = -Math.PI/2;
+    const end = start + (Math.PI*2)*(clamp(score,0,100)/100);
+    ctx.strokeStyle = col;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.arc(cx,cy,r,start,end);
+    ctx.stroke();
+  }
+
+  function drawTrend(items){
+    const canvas = $("trend");
+    const ctx = canvas.getContext("2d");
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0,0,W,H);
+
+    // grid lines
+    ctx.strokeStyle = "rgba(255,255,255,.08)";
+    ctx.lineWidth = 1;
+    for(let i=0;i<=4;i++){
+      const y = 14 + i*((H-28)/4);
+      ctx.beginPath(); ctx.moveTo(10,y); ctx.lineTo(W-10,y); ctx.stroke();
+    }
+
+    const sorted = [...items].sort((a,b)=> a.date.localeCompare(b.date));
+    const last = sorted.slice(-14);
+    if(last.length === 0) return;
+
+    const xs = last.map((_,i)=> 10 + i*((W-20)/Math.max(1,last.length-1)));
+    const ys = last.map(x => {
+      const s = clamp(x.score,0,100);
+      return 14 + (1 - s/100) * (H-28);
+    });
+
+    const col = getCSS("--pink");
+    ctx.strokeStyle = col;
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    xs.forEach((x,i)=>{
+      const y = ys[i];
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+
+    // points
+    ctx.fillStyle = col;
+    xs.forEach((x,i)=>{
+      ctx.beginPath();
+      ctx.arc(x,ys[i],3,0,Math.PI*2);
+      ctx.fill();
+    });
+
+    // latest label
+    const latest = last[last.length-1];
+    ctx.fillStyle = "rgba(238,242,255,.85)";
+    ctx.font = "12px system-ui";
+    ctx.fillText(`${latest.score}`, xs[xs.length-1] - 10, ys[ys.length-1] - 10);
+  }
+
+  // ---------------- Dashboard render ----------------
+  function render(){
+    const items = loadAll();
+    const sortedDesc = [...items].sort((a,b)=> b.date.localeCompare(a.date));
+
+    // pills
+    $("streakPill").textContent = `${streak(items)} zile`;
+    const avg7 = movingAvg(items, 7);
+    $("avgPill").textContent = `Medie 7 zile: ${avg7 == null ? "—" : avg7}`;
+
+    if(sortedDesc.length === 0){
+      $("scoreVal").textContent = "—";
+      $("scoreLabel").textContent = "Completează și salvează.";
+      $("zonePill").textContent = "Zonă: —";
+      drawRing(null);
+      drawTrend([]);
+      $("history").innerHTML = "";
       return;
     }
 
+    const latest = sortedDesc[0];
+    $("scoreVal").textContent = latest.score;
+    $("scoreLabel").textContent = scoreLabel(latest.score);
+    $("zonePill").textContent = `Zonă: ${zoneText(latest.score)}`;
+    $("zonePill").style.borderColor = "rgba(255,255,255,.16)";
+    $("zonePill").style.color = "rgba(238,242,255,.85)";
+
+    drawRing(latest.score);
+    drawTrend(items);
+
+    // history
+    const ul = $("history");
+    ul.innerHTML = "";
+    sortedDesc.slice(0,10).forEach(it=>{
+      const li = document.createElement("li");
+      const left = document.createElement("div");
+      left.innerHTML = `<div><strong>${it.date}</strong></div>
+                        <div class="small">${(it.notes||"").slice(0,46)}${(it.notes||"").length>46?"…":""}</div>`;
+      const right = document.createElement("div");
+      right.className = "right";
+      right.innerHTML = `<div style="font-weight:900;color:${scoreColor(it.score)}">${it.score}</div>
+                         <div class="small">${zoneText(it.score)}</div>`;
+      li.appendChild(left);
+      li.appendChild(right);
+      ul.appendChild(li);
+    });
+  }
+
+  // ---------------- Actions ----------------
+  function currentEntryFromUI(){
+    const entry = { date: $("date").value || todayISO(), notes: $("notes").value.trim() };
+    QUESTIONS.forEach(q => entry[q.id] = Number($(q.id).value));
     entry.score = computeScore(entry);
+    return entry;
+  }
+
+  function saveEntry(){
+    const entry = currentEntryFromUI();
+    if(!entry.date){
+      $("msg").textContent = "Selectează o dată.";
+      return;
+    }
 
     const items = loadAll();
-    // replace if same date exists
     const idx = items.findIndex(x => x.date === entry.date);
-    if(idx >= 0) items[idx] = entry;
-    else items.push(entry);
-
+    if(idx >= 0) items[idx] = entry; else items.push(entry);
     saveAll(items);
-    renderDashboard(items);
 
-    $("msg").textContent = `Salvat. Scor: ${entry.score}/100`;
-    $("msg").className = "small";
-  });
+    $("msg").textContent = `Salvat ✓  Scor: ${entry.score}/100 (${zoneText(entry.score)})`;
+    render();
+  }
 
-  $("clearBtn").addEventListener("click", () => {
+  function clearAll(){
     localStorage.removeItem(KEY);
     $("notes").value = "";
-    ["q1","q2","q3","q4","q5","q6"].forEach(id => $(id).value = 3);
-    renderDashboard([]);
-    $("msg").textContent = "Toate datele au fost șterse din acest browser.";
-    $("msg").className = "small";
-  });
+    QUESTIONS.forEach(q => { $(q.id).value = 3; updateQBadge(q.id, 3); });
+    $("msg").textContent = "Datele au fost șterse din acest browser.";
+    render();
+  }
+
+  function exportCSV(){
+    const items = loadAll().sort((a,b)=> a.date.localeCompare(b.date));
+    if(items.length === 0){
+      $("msg").textContent = "Nu ai date de exportat.";
+      return;
+    }
+    const headers = ["date", ...QUESTIONS.map(q=>q.id), "score", "notes"];
+    const esc = (s) => `"${String(s ?? "").replaceAll('"','""')}"`;
+    const lines = [headers.join(",")].concat(
+      items.map(it => headers.map(h => esc(it[h])).join(","))
+    );
+    const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "jurnal_relational.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+    $("msg").textContent = "Export făcut ✓";
+  }
+
+  // ---------------- Init ----------------
+  buildQuestions();
+  $("date").value = todayISO();
+  QUESTIONS.forEach(q => updateQBadge(q.id, 3));
+  render();
+
+  // live preview score (optional but nice)
+  function preview(){
+    const entry = currentEntryFromUI();
+    $("scoreVal").textContent = entry.score;
+    $("scoreLabel").textContent = scoreLabel(entry.score);
+    $("zonePill").textContent = `Zonă: ${zoneText(entry.score)}`;
+    drawRing(entry.score);
+  }
+  QUESTIONS.forEach(q => $(q.id).addEventListener("input", preview));
+  $("notes").addEventListener("input", () => {}); // no-op (keep simple)
+
+  $("saveBtn").addEventListener("click", saveEntry);
+  $("clearBtn").addEventListener("click", clearAll);
+  $("exportBtn").addEventListener("click", exportCSV);
 </script>
 </body>
 </html>
