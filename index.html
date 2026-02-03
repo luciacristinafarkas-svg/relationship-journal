@@ -6,20 +6,24 @@
   <title>Jurnal Relațional</title>
   <style>
     :root{
-      --bg0:#070A14;
-      --bg1:#0B1020;
+      /* Warm palette */
+      --bg0:#130A06;
+      --bg1:#20110A;
+
+      --paper:#F6E8D6;
+      --paper2:#F2DDC4;
+      --ink:#2A160D;
+      --muted:#6A3E2B;
+
       --card: rgba(255,255,255,.06);
       --stroke: rgba(255,255,255,.10);
-      --txt:#EEF2FF;
-      --muted: rgba(238,242,255,.70);
 
-      --pink:#FF4FD8;
-      --cyan:#59D6FF;
-      --green:#4DFF8A;
-      --yellow:#FFD34D;
-      --red:#FF5D5D;
+      --terracotta:#C75C3A;
+      --amber:#E2A23A;
+      --rose:#D47B6A;
+      --olive:#7D8C4A;
 
-      --shadow: 0 20px 80px rgba(0,0,0,.55);
+      --shadow: 0 30px 90px rgba(0,0,0,.55);
       --radius: 18px;
     }
 
@@ -27,29 +31,29 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Arial;
-      color:var(--txt);
+      color: rgba(255,255,255,.92);
       background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(255,79,216,.12), transparent 55%),
-        radial-gradient(900px 600px at 80% 30%, rgba(89,214,255,.10), transparent 55%),
-        radial-gradient(900px 600px at 30% 90%, rgba(77,255,138,.08), transparent 60%),
+        radial-gradient(900px 600px at 18% 20%, rgba(199,92,58,.18), transparent 60%),
+        radial-gradient(800px 520px at 85% 28%, rgba(226,162,58,.14), transparent 60%),
+        radial-gradient(900px 600px at 35% 92%, rgba(212,123,106,.10), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       min-height:100vh;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:22px;}
+    .wrap{max-width:1180px;margin:0 auto;padding:22px;}
     header{
       display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;
       margin-bottom:14px;
     }
     h1{margin:0;font-size:22px;letter-spacing:.2px;}
-    .subtitle{margin:6px 0 0;color:var(--muted);font-size:13px;max-width:720px}
+    .subtitle{margin:6px 0 0;color:rgba(255,255,255,.70);font-size:13px;max-width:760px}
 
     .pillbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
     .pill{
       padding:8px 10px;border-radius:999px;
       background:rgba(255,255,255,.06);
-      border:1px solid var(--stroke);
-      color:var(--muted);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.75);
       font-size:12px;
       backdrop-filter: blur(10px);
     }
@@ -59,13 +63,13 @@
       grid-template-columns: 1fr;
       gap:14px;
     }
-    @media(min-width:980px){
-      .grid{grid-template-columns: 1.25fr .75fr;}
+    @media(min-width:1020px){
+      .grid{grid-template-columns: 1.15fr .85fr;}
     }
 
     .card{
-      background: var(--card);
-      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
@@ -74,62 +78,44 @@
       position:relative;
     }
 
-    .card:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(600px 300px at 10% 10%, rgba(255,79,216,.20), transparent 45%),
-        radial-gradient(600px 300px at 90% 30%, rgba(89,214,255,.16), transparent 50%);
-      opacity:.45;
-      pointer-events:none;
-      filter: blur(16px);
-    }
-    .card > *{position:relative}
-
     .row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;}
     .two{display:grid;grid-template-columns:1fr;gap:12px;}
     @media(min-width:680px){.two{grid-template-columns:1fr 1fr;}}
 
-    label{display:block;margin:10px 0 6px;color:var(--muted);font-size:12px;}
+    label{display:block;margin:10px 0 6px;color:rgba(255,255,255,.70);font-size:12px;}
     input, textarea{
       width:100%;
       padding:10px 12px;
       border-radius:14px;
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
-      color:var(--txt);
+      color:rgba(255,255,255,.92);
       outline:none;
     }
     textarea{min-height:92px;resize:vertical;}
 
     .q{
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
       border-radius:16px;
       padding:12px;
       transition: transform .12s ease, border-color .12s ease;
     }
-    .q:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.18);}
+    .q:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.20);}
     .qtop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
     .qtitle{font-size:14px;line-height:1.3;margin:0;}
     .qmeta{display:flex;gap:8px;align-items:center;}
     .badge{
       padding:6px 10px;border-radius:999px;
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.05);
-      font-size:12px;color:var(--muted);
+      font-size:12px;color:rgba(255,255,255,.75);
       white-space:nowrap;
     }
     .emoji{font-size:18px}
 
-    .slider{
-      width:100%;
-      margin-top:10px;
-      accent-color: var(--pink);
-    }
-    .scale{
-      display:flex;justify-content:space-between;margin-top:6px;color:var(--muted);font-size:11px;
-    }
+    .slider{width:100%;margin-top:10px; accent-color: var(--amber);}
+    .scale{display:flex;justify-content:space-between;margin-top:6px;color:rgba(255,255,255,.65);font-size:11px;}
 
     .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
     button{
@@ -137,64 +123,118 @@
       border:none;
       border-radius:14px;
       padding:10px 14px;
-      font-weight:700;
-      color:#12051a;
-      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      font-weight:800;
+      color:#1c0f09;
+      background: linear-gradient(90deg, var(--amber), var(--terracotta));
       transition: transform .08s ease, opacity .12s ease;
     }
     button:active{transform: translateY(1px);}
     .ghost{
       background: rgba(255,255,255,.06);
-      color: var(--txt);
-      border:1px solid var(--stroke);
+      color: rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.14);
+      font-weight:700;
     }
-    .msg{margin:10px 0 0;color:var(--muted);font-size:12px;}
+    .msg{margin:10px 0 0;color:rgba(255,255,255,.72);font-size:12px;}
 
-    /* Dashboard */
-    .dashTop{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;}
-    .scoreWrap{display:flex;gap:14px;align-items:center;}
-    .scoreNum{font-size:34px;font-weight:900;margin:0;line-height:1;}
-    .scoreLbl{color:var(--muted);font-size:12px;margin-top:4px;}
-    .mini{
-      padding:8px 10px;border-radius:14px;border:1px solid var(--stroke);
-      background:rgba(255,255,255,.05);
-      color:var(--muted);font-size:12px;
+    /* Journal pages */
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+    .tab{
+      cursor:pointer;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.78);
+      font-size:12px;
+      user-select:none;
+    }
+    .tab.active{
+      background: linear-gradient(90deg, rgba(226,162,58,.22), rgba(199,92,58,.18));
+      border-color: rgba(255,255,255,.22);
+      color: rgba(255,255,255,.92);
+      font-weight:800;
     }
 
-    .ring{
-      width:84px;height:84px;border-radius:50%;
-      display:grid;place-items:center;
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.04);
-      position:relative;
+    .paper{
+      background: radial-gradient(900px 500px at 30% 15%, var(--paper), var(--paper2));
+      color: var(--ink);
+      border-radius: 18px;
+      border: 1px solid rgba(60,30,20,.18);
+      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+      padding: 16px 16px 14px 16px;
+      position: relative;
       overflow:hidden;
     }
-    .ring canvas{display:block}
-    .ringCenter{
-      position:absolute; inset:0; display:grid; place-items:center;
-      font-size:12px; color:var(--muted);
+    .paper:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(90,55,38,.08),
+          rgba(90,55,38,.08) 1px,
+          transparent 1px,
+          transparent 26px
+        );
+      opacity:.55;
       pointer-events:none;
     }
+    .paper:after{
+      content:"";
+      position:absolute; left:0; top:0; bottom:0; width:12px;
+      background: linear-gradient(180deg, rgba(199,92,58,.25), rgba(226,162,58,.18));
+      opacity:.45;
+      pointer-events:none;
+    }
+    .paper > *{position:relative}
 
-    .chart{
-      margin-top:12px;
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.04);
+    .hand{
+      font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", "Snell Roundhand", cursive;
+      letter-spacing: .2px;
+    }
+    .pageTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap;}
+    .pageTitle{margin:0;font-size:18px;}
+    .pageMeta{color:rgba(42,22,13,.65);font-size:12px}
+    .pageBody{margin-top:10px;display:grid;grid-template-columns:1fr;gap:12px;}
+    @media(min-width:900px){.pageBody{grid-template-columns:1fr .9fr;}}
+    .noteBox{
+      border:1px solid rgba(60,30,20,.14);
       border-radius:16px;
+      background: rgba(255,255,255,.35);
+      padding:12px;
+    }
+    .noteText{white-space:pre-wrap; line-height:1.55; font-size:15px; color:rgba(42,22,13,.92);}
+    .sketchBox{
+      border:1px solid rgba(60,30,20,.14);
+      border-radius:16px;
+      background: rgba(255,255,255,.25);
       padding:10px;
     }
-    .chartHeader{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;}
-    .chartTitle{margin:0;font-size:13px;color:var(--muted)}
-    .legend{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px}
-    .dot{width:10px;height:10px;border-radius:999px;background:var(--pink);display:inline-block}
+    .sketchHint{font-size:12px;color:rgba(42,22,13,.60);margin-top:8px}
 
+    .navRow{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:10px;}
+    .navRow .ghost{border-color: rgba(60,30,20,.22); color: rgba(42,22,13,.88); background: rgba(255,255,255,.40);}
+    .navRow button{padding:9px 12px;border-radius:12px;}
+
+    /* Dashboard mini */
+    .miniCard{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .scoreNum{font-size:34px;font-weight:900;margin:0;line-height:1;}
+    .scoreLbl{color:rgba(255,255,255,.72);font-size:12px;margin-top:4px;}
+    .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.12);overflow:hidden;margin-top:10px;}
+    .bar > div{height:100%;width:0%;}
     ul{list-style:none;padding:0;margin:10px 0 0;}
     li{
       padding:10px 0;
-      border-top:1px solid var(--stroke);
+      border-top:1px solid rgba(255,255,255,.12);
       display:flex;justify-content:space-between;gap:10px;
     }
-    .small{color:var(--muted);font-size:12px}
+    .small{color:rgba(255,255,255,.72);font-size:12px}
     .right{text-align:right}
   </style>
 </head>
@@ -204,67 +244,107 @@
     <header>
       <div>
         <h1>Jurnal Relațional</h1>
-        <p class="subtitle">Completezi 1×/zi. Primești un scor (0–100) + trend. Totul se salvează local în browser.</p>
+        <p class="subtitle">Completezi doar pentru azi sau zile trecute. Apoi răsfoiești “pagini” ca într-un jurnal, cu text scris de mână și un sketch automat.</p>
       </div>
       <div class="pillbar">
-        <div class="pill">Scală: 1 → 5</div>
         <div class="pill" id="streakPill">0 zile</div>
         <div class="pill" id="avgPill">Medie 7 zile: —</div>
+        <div class="pill" id="countPill">Intrări: 0</div>
       </div>
     </header>
 
     <div class="grid">
 
-      <!-- FORM -->
+      <!-- LEFT: FORM + JOURNAL -->
       <section class="card">
-        <div class="two">
-          <div>
-            <label>Data</label>
-            <input id="date" type="date" />
-          </div>
-          <div>
-            <label>Mod</label>
-            <input value="Jurnal personal (fără evaluări externe)" disabled />
-          </div>
+        <div class="tabs">
+          <div class="tab active" id="tabFill">Completează</div>
+          <div class="tab" id="tabJournal">Jurnal (răsfoire)</div>
         </div>
 
-        <div id="questions" style="margin-top:12px; display:grid; gap:12px;"></div>
+        <!-- Fill view -->
+        <div id="viewFill">
+          <div class="two">
+            <div>
+              <label>Data (nu poți selecta zile viitoare)</label>
+              <input id="date" type="date" />
+            </div>
+            <div>
+              <label>Notă</label>
+              <input value="Datele se salvează local în browser" disabled />
+            </div>
+          </div>
 
-        <label>Notițe (opțional)</label>
-        <textarea id="notes" placeholder="Context, exemple, emoții, ce ți-ai dori diferit..."></textarea>
+          <div id="questions" style="margin-top:12px; display:grid; gap:12px;"></div>
 
-        <div class="btnrow">
-          <button id="saveBtn">Save day</button>
-          <button id="exportBtn" class="ghost">Export CSV</button>
-          <button id="clearBtn" class="ghost">Clear all</button>
+          <label>Notițe (opțional)</label>
+          <textarea id="notes" placeholder="Ce s-a întâmplat azi? Cum te-ai simțit? Ce ai avea nevoie?"></textarea>
+
+          <div class="btnrow">
+            <button id="saveBtn">Save day</button>
+            <button id="jumpJournalBtn" class="ghost">Vezi în jurnal</button>
+            <button id="exportBtn" class="ghost">Export CSV</button>
+            <button id="clearBtn" class="ghost">Clear all</button>
+          </div>
+
+          <p class="msg" id="msg"></p>
         </div>
 
-        <p class="msg" id="msg"></p>
+        <!-- Journal view -->
+        <div id="viewJournal" style="display:none;">
+          <div class="paper hand">
+            <div class="pageTop">
+              <div>
+                <p class="pageTitle" id="pageDate">—</p>
+                <div class="pageMeta" id="pageMeta">—</div>
+              </div>
+              <div class="pageMeta" id="pageScore">—</div>
+            </div>
+
+            <div class="pageBody">
+              <div class="noteBox">
+                <div class="pageMeta" style="margin-bottom:6px;">Notițe</div>
+                <div class="noteText" id="pageNotes">Nu există încă o intrare pentru această zi.</div>
+              </div>
+
+              <div class="sketchBox">
+                <canvas id="sketch" width="520" height="320" style="width:100%;height:auto;display:block;"></canvas>
+                <div class="sketchHint" id="sketchHint">Sketch-ul se schimbă în funcție de scorul zilei.</div>
+              </div>
+            </div>
+
+            <div class="navRow">
+              <button class="ghost" id="prevBtn">← Ziua anterioară</button>
+              <div class="pageMeta" id="pageIndex">0/0</div>
+              <button class="ghost" id="nextBtn">Ziua următoare →</button>
+            </div>
+          </div>
+
+          <div class="msg" style="margin-top:10px;color:rgba(255,255,255,.75);">
+            Tip: dacă vrei “și mai de mână”, scrie notițele mai narativ (2–5 propoziții) și jurnalul arată mult mai autentic.
+          </div>
+        </div>
       </section>
 
-      <!-- DASHBOARD -->
+      <!-- RIGHT: DASHBOARD -->
       <aside class="card">
-        <div class="dashTop">
-          <div class="scoreWrap">
-            <div class="ring">
-              <canvas id="ring" width="84" height="84"></canvas>
-              <div class="ringCenter">score</div>
-            </div>
+        <div class="miniCard">
+          <div class="row">
             <div>
               <p class="scoreNum" id="scoreVal">—</p>
               <div class="scoreLbl" id="scoreLabel">Completează și salvează.</div>
             </div>
+            <div class="pill" id="zonePill">Zonă: —</div>
           </div>
-          <div class="mini" id="zonePill">Zonă: —</div>
+          <div class="bar"><div id="barFill"></div></div>
         </div>
 
-        <div class="chart">
-          <div class="chartHeader">
-            <p class="chartTitle">Trend (ultimele 14 zile)</p>
-            <div class="legend"><span class="dot"></span> scor</div>
+        <div class="miniCard" style="margin-top:12px;">
+          <div class="row">
+            <div class="small">Trend (ultimele 14 zile)</div>
+            <div class="small" id="trendMini">—</div>
           </div>
-          <canvas id="trend" width="420" height="140" style="width:100%;height:auto;margin-top:8px;"></canvas>
-          <div class="small" style="margin-top:8px;">Tip: urmărește trendul, nu o zi izolată.</div>
+          <canvas id="trend" width="520" height="160" style="width:100%;height:auto;margin-top:10px;display:block;"></canvas>
         </div>
 
         <h3 style="margin:14px 0 6px; font-size:14px;">Istoric (ultimele 10)</h3>
@@ -276,7 +356,7 @@
 
 <script>
   // ---------------- Config ----------------
-  const KEY = "rel_journal_v2";
+  const KEY = "rel_journal_v3";
 
   const QUESTIONS = [
     { id:"q1", text:"M-am simțit respectat/ă", positive:true },
@@ -328,16 +408,10 @@
     return Math.round(avg);
   }
 
-  function scoreColor(score){
-    if(score < 40) return getCSS("--red");
-    if(score < 70) return getCSS("--yellow");
-    return getCSS("--green");
-  }
-
-  function zoneText(score){
-    if(score < 40) return "Roșu";
-    if(score < 70) return "Galben";
-    return "Verde";
+  function zone(score){
+    if(score < 40) return {name:"Roșu", color:getCSS("--terracotta"), hint:"tensiune / apăsare"};
+    if(score < 70) return {name:"Galben", color:getCSS("--amber"), hint:"amestec / instabil"};
+    return {name:"Verde", color:getCSS("--olive"), hint:"conectare / siguranță"};
   }
 
   function scoreLabel(score){
@@ -372,6 +446,10 @@
     return count;
   }
 
+  function isFutureDate(iso){
+    return iso > todayISO();
+  }
+
   // ---------------- UI build: questions ----------------
   function buildQuestions(){
     const wrap = $("questions");
@@ -403,44 +481,15 @@
     $(`${qid}_badge`).textContent = `${val} · ${e.t}`;
   }
 
-  // ---------------- Drawing: ring + trend ----------------
-  function drawRing(score){
-    const c = $("ring");
-    const ctx = c.getContext("2d");
-    const W = c.width, H = c.height;
-    ctx.clearRect(0,0,W,H);
-
-    const cx=W/2, cy=H/2, r=30;
-    const bgStroke = "rgba(255,255,255,.10)";
-    const col = score == null ? "rgba(255,255,255,.22)" : scoreColor(score);
-
-    // background circle
-    ctx.lineWidth = 10;
-    ctx.strokeStyle = bgStroke;
-    ctx.beginPath();
-    ctx.arc(cx,cy,r,0,Math.PI*2);
-    ctx.stroke();
-
-    if(score == null) return;
-
-    // progress arc
-    const start = -Math.PI/2;
-    const end = start + (Math.PI*2)*(clamp(score,0,100)/100);
-    ctx.strokeStyle = col;
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.arc(cx,cy,r,start,end);
-    ctx.stroke();
-  }
-
+  // ---------------- Drawing: trend ----------------
   function drawTrend(items){
     const canvas = $("trend");
     const ctx = canvas.getContext("2d");
     const W = canvas.width, H = canvas.height;
     ctx.clearRect(0,0,W,H);
 
-    // grid lines
-    ctx.strokeStyle = "rgba(255,255,255,.08)";
+    // grid
+    ctx.strokeStyle = "rgba(255,255,255,.10)";
     ctx.lineWidth = 1;
     for(let i=0;i<=4;i++){
       const y = 14 + i*((H-28)/4);
@@ -449,6 +498,7 @@
 
     const sorted = [...items].sort((a,b)=> a.date.localeCompare(b.date));
     const last = sorted.slice(-14);
+    $("trendMini").textContent = last.length ? `${last[0].date} → ${last[last.length-1].date}` : "—";
     if(last.length === 0) return;
 
     const xs = last.map((_,i)=> 10 + i*((W-20)/Math.max(1,last.length-1)));
@@ -457,9 +507,9 @@
       return 14 + (1 - s/100) * (H-28);
     });
 
-    const col = getCSS("--pink");
+    const col = "rgba(226,162,58,.95)";
     ctx.strokeStyle = col;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 2.2;
 
     ctx.beginPath();
     xs.forEach((x,i)=>{
@@ -468,27 +518,259 @@
     });
     ctx.stroke();
 
-    // points
     ctx.fillStyle = col;
     xs.forEach((x,i)=>{
-      ctx.beginPath();
-      ctx.arc(x,ys[i],3,0,Math.PI*2);
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(x,ys[i],3,0,Math.PI*2); ctx.fill();
     });
+  }
 
-    // latest label
-    const latest = last[last.length-1];
-    ctx.fillStyle = "rgba(238,242,255,.85)";
-    ctx.font = "12px system-ui";
-    ctx.fillText(`${latest.score}`, xs[xs.length-1] - 10, ys[ys.length-1] - 10);
+  // ---------------- Drawing: pencil sketch ----------------
+  function rnd(seed){
+    // deterministic-ish random from seed string
+    let h = 2166136261;
+    for(let i=0;i<seed.length;i++){
+      h ^= seed.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return function(){
+      // xorshift
+      h ^= h << 13; h ^= h >>> 17; h ^= h << 5;
+      return (h >>> 0) / 4294967296;
+    };
+  }
+
+  function pencil(ctx, x1,y1,x2,y2, jitter, passes, r){
+    ctx.strokeStyle = "rgba(42,22,13,.52)";
+    ctx.lineWidth = 1.1;
+    ctx.lineCap = "round";
+    for(let p=0;p<passes;p++){
+      const jx = (r()-0.5)*jitter;
+      const jy = (r()-0.5)*jitter;
+      ctx.beginPath();
+      ctx.moveTo(x1 + jx, y1 + jy);
+      ctx.lineTo(x2 + jx, y2 + jy);
+      ctx.stroke();
+    }
+  }
+
+  function hatch(ctx, x,y,w,h, spacing, angle, r){
+    ctx.save();
+    ctx.translate(x+w/2, y+h/2);
+    ctx.rotate(angle);
+    ctx.translate(-(x+w/2), -(y+h/2));
+    for(let i=-h;i<w+h;i+=spacing){
+      pencil(ctx, x+i, y, x+i+h+w, y+h+w, 1.6, 2, r);
+    }
+    ctx.restore();
+  }
+
+  function drawSketch(entry){
+    const c = $("sketch");
+    const ctx = c.getContext("2d");
+    const W = c.width, H = c.height;
+    ctx.clearRect(0,0,W,H);
+
+    // paper tint
+    ctx.fillStyle = "rgba(255,255,255,.20)";
+    ctx.fillRect(0,0,W,H);
+
+    const r = rnd(entry.date + "|" + entry.score + "|" + (entry.notes||""));
+    const z = zone(entry.score);
+
+    // soft vignette
+    const g = ctx.createRadialGradient(W*0.5, H*0.4, 30, W*0.5, H*0.5, Math.max(W,H)*0.7);
+    g.addColorStop(0, "rgba(0,0,0,0)");
+    g.addColorStop(1, "rgba(42,22,13,.10)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,W,H);
+
+    // draw based on zone:
+    // Verde: "floare + soare"
+    // Galben: "nor + raze întrerupte"
+    // Roșu: "nod/spirală + linii frânte"
+    ctx.strokeStyle = "rgba(42,22,13,.55)";
+    ctx.lineWidth = 1.2;
+
+    if(z.name === "Verde"){
+      // sun
+      const sx=W*0.78, sy=H*0.22, sr=26;
+      for(let i=0;i<12;i++){
+        const a=i*(Math.PI*2/12);
+        pencil(ctx, sx+Math.cos(a)*sr, sy+Math.sin(a)*sr, sx+Math.cos(a)*(sr+22), sy+Math.sin(a)*(sr+22), 1.8, 2, r);
+      }
+      // circle sun
+      for(let k=0;k<3;k++){
+        ctx.beginPath();
+        ctx.arc(sx,sy,sr+(r()-0.5)*2,0,Math.PI*2);
+        ctx.strokeStyle="rgba(42,22,13,.45)";
+        ctx.stroke();
+      }
+
+      // flower
+      const cx=W*0.30, cy=H*0.62;
+      const petals=7;
+      for(let i=0;i<petals;i++){
+        const a=i*(Math.PI*2/petals);
+        const px=cx+Math.cos(a)*44;
+        const py=cy+Math.sin(a)*24;
+        // petal loop
+        ctx.beginPath();
+        ctx.ellipse(px, py, 22, 14, a, 0, Math.PI*2);
+        ctx.strokeStyle="rgba(42,22,13,.40)";
+        ctx.stroke();
+        hatch(ctx, px-18, py-12, 36, 24, 10, a+0.4, r);
+      }
+      // center
+      ctx.beginPath(); ctx.arc(cx,cy,16,0,Math.PI*2); ctx.stroke();
+      hatch(ctx, cx-16, cy-16, 32, 32, 8, 0.2, r);
+
+      // stem + leaf
+      pencil(ctx, cx, cy+16, cx-6, H*0.92, 2.2, 3, r);
+      ctx.beginPath();
+      ctx.ellipse(cx-30, cy+60, 28, 12, -0.5, 0, Math.PI*2);
+      ctx.strokeStyle="rgba(42,22,13,.38)";
+      ctx.stroke();
+      hatch(ctx, cx-58, cy+48, 56, 24, 10, -0.5, r);
+
+    } else if(z.name === "Galben"){
+      // cloud
+      const x=W*0.30, y=H*0.30;
+      for(let i=0;i<3;i++){
+        ctx.beginPath();
+        ctx.ellipse(x+ i*60, y + (i%2)*8, 40, 26, 0, 0, Math.PI*2);
+        ctx.strokeStyle="rgba(42,22,13,.45)";
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.ellipse(x+70, y+24, 90, 34, 0, 0, Math.PI*2);
+      ctx.stroke();
+
+      hatch(ctx, x-10, y-10, 200, 90, 12, 0.25, r);
+
+      // broken rays / mixed energy
+      const cx=W*0.72, cy=H*0.58;
+      for(let i=0;i<10;i++){
+        const a=i*(Math.PI*2/10);
+        const len= 18 + r()*28;
+        const gap= 8 + r()*10;
+        const x1=cx+Math.cos(a)*24, y1=cy+Math.sin(a)*24;
+        const x2=cx+Math.cos(a)*(24+len), y2=cy+Math.sin(a)*(24+len);
+        pencil(ctx, x1,y1,x2,y2, 1.6, 2, r);
+        // gap segment
+        const x3=cx+Math.cos(a)*(24+len+gap), y3=cy+Math.sin(a)*(24+len+gap);
+        const x4=cx+Math.cos(a)*(24+len+gap+12), y4=cy+Math.sin(a)*(24+len+gap+12);
+        pencil(ctx, x3,y3,x4,y4, 1.6, 2, r);
+      }
+      // small circle
+      ctx.beginPath(); ctx.arc(cx,cy,18,0,Math.PI*2); ctx.stroke();
+
+    } else { // Roșu
+      // knot / spiral
+      const cx=W*0.50, cy=H*0.50;
+      let rad=8;
+      ctx.strokeStyle="rgba(42,22,13,.55)";
+      for(let t=0;t<16;t++){
+        const a1=t*0.55, a2=(t+1)*0.55;
+        const r1=rad + t*3.2;
+        const r2=rad + (t+1)*3.2;
+        pencil(ctx, cx+Math.cos(a1)*r1, cy+Math.sin(a1)*r1, cx+Math.cos(a2)*r2, cy+Math.sin(a2)*r2, 2.0, 3, r);
+      }
+
+      // jagged lines
+      for(let i=0;i<6;i++){
+        let x=30 + r()*80, y=H*0.72 + r()*50;
+        for(let k=0;k<6;k++){
+          const nx = x + 40 + r()*35;
+          const ny = y + (r()-0.5)*40;
+          pencil(ctx, x,y,nx,ny, 2.2, 2, r);
+          x=nx; y=ny;
+        }
+      }
+
+      // heavy hatch zone
+      hatch(ctx, W*0.12, H*0.10, W*0.30, H*0.24, 8, 0.55, r);
+    }
+
+    // label (handwritten)
+    ctx.fillStyle = "rgba(42,22,13,.75)";
+    ctx.font = "18px 'Segoe Print','Bradley Hand','Comic Sans MS',cursive";
+    ctx.fillText(`${z.hint}`, 16, H - 18);
+  }
+
+  // ---------------- Views / Tabs ----------------
+  function setActiveTab(tab){
+    const fillTab = $("tabFill");
+    const journalTab = $("tabJournal");
+    const vf = $("viewFill");
+    const vj = $("viewJournal");
+
+    if(tab === "fill"){
+      fillTab.classList.add("active");
+      journalTab.classList.remove("active");
+      vf.style.display = "";
+      vj.style.display = "none";
+    } else {
+      journalTab.classList.add("active");
+      fillTab.classList.remove("active");
+      vj.style.display = "";
+      vf.style.display = "none";
+    }
+  }
+
+  // ---------------- Journal paging ----------------
+  let journalDates = [];     // sorted ascending
+  let journalIndex = 0;
+
+  function refreshJournalModel(items){
+    journalDates = [...items].map(x=>x.date).sort((a,b)=>a.localeCompare(b));
+    journalIndex = clamp(journalIndex, 0, Math.max(0, journalDates.length-1));
+  }
+
+  function getEntryByDate(items, date){
+    return items.find(x => x.date === date) || null;
+  }
+
+  function renderJournal(){
+    const items = loadAll();
+    refreshJournalModel(items);
+
+    if(journalDates.length === 0){
+      $("pageDate").textContent = "Nu ai încă intrări";
+      $("pageMeta").textContent = "Completează o zi și revino aici.";
+      $("pageScore").textContent = "";
+      $("pageNotes").textContent = "—";
+      $("pageIndex").textContent = "0/0";
+      // empty sketch
+      const c = $("sketch"); c.getContext("2d").clearRect(0,0,c.width,c.height);
+      $("sketchHint").textContent = "Sketch-ul apare după ce salvezi o zi.";
+      return;
+    }
+
+    const date = journalDates[journalIndex];
+    const entry = getEntryByDate(items, date);
+    const z = zone(entry.score);
+
+    $("pageDate").textContent = `Ziua: ${date}`;
+    $("pageMeta").textContent = `Stare: ${z.name} · ${z.hint}`;
+    $("pageScore").textContent = `Scor: ${entry.score}/100`;
+    $("pageNotes").textContent = entry.notes ? entry.notes : "(fără notițe)";
+    $("pageIndex").textContent = `${journalIndex+1}/${journalDates.length}`;
+    $("sketchHint").textContent = `Sketch: ${z.name} (${z.hint})`;
+
+    drawSketch(entry);
+
+    $("prevBtn").disabled = (journalIndex === 0);
+    $("nextBtn").disabled = (journalIndex === journalDates.length - 1);
+    $("prevBtn").style.opacity = $("prevBtn").disabled ? 0.6 : 1;
+    $("nextBtn").style.opacity = $("nextBtn").disabled ? 0.6 : 1;
   }
 
   // ---------------- Dashboard render ----------------
-  function render(){
+  function renderDashboard(){
     const items = loadAll();
     const sortedDesc = [...items].sort((a,b)=> b.date.localeCompare(a.date));
 
-    // pills
+    $("countPill").textContent = `Intrări: ${items.length}`;
     $("streakPill").textContent = `${streak(items)} zile`;
     const avg7 = movingAvg(items, 7);
     $("avgPill").textContent = `Medie 7 zile: ${avg7 == null ? "—" : avg7}`;
@@ -497,34 +779,36 @@
       $("scoreVal").textContent = "—";
       $("scoreLabel").textContent = "Completează și salvează.";
       $("zonePill").textContent = "Zonă: —";
-      drawRing(null);
-      drawTrend([]);
+      $("barFill").style.width = "0%";
+      $("barFill").style.background = "transparent";
       $("history").innerHTML = "";
+      drawTrend([]);
       return;
     }
 
     const latest = sortedDesc[0];
+    const z = zone(latest.score);
+
     $("scoreVal").textContent = latest.score;
     $("scoreLabel").textContent = scoreLabel(latest.score);
-    $("zonePill").textContent = `Zonă: ${zoneText(latest.score)}`;
-    $("zonePill").style.borderColor = "rgba(255,255,255,.16)";
-    $("zonePill").style.color = "rgba(238,242,255,.85)";
+    $("zonePill").textContent = `Zonă: ${z.name}`;
+    $("barFill").style.width = `${clamp(latest.score,0,100)}%`;
+    $("barFill").style.background = `linear-gradient(90deg, ${getCSS("--amber")}, ${getCSS("--terracotta")})`;
 
-    drawRing(latest.score);
     drawTrend(items);
 
-    // history
     const ul = $("history");
     ul.innerHTML = "";
     sortedDesc.slice(0,10).forEach(it=>{
+      const z2 = zone(it.score);
       const li = document.createElement("li");
       const left = document.createElement("div");
       left.innerHTML = `<div><strong>${it.date}</strong></div>
                         <div class="small">${(it.notes||"").slice(0,46)}${(it.notes||"").length>46?"…":""}</div>`;
       const right = document.createElement("div");
       right.className = "right";
-      right.innerHTML = `<div style="font-weight:900;color:${scoreColor(it.score)}">${it.score}</div>
-                         <div class="small">${zoneText(it.score)}</div>`;
+      right.innerHTML = `<div style="font-weight:900;color:rgba(255,255,255,.92)">${it.score}</div>
+                         <div class="small">${z2.name}</div>`;
       li.appendChild(left);
       li.appendChild(right);
       ul.appendChild(li);
@@ -541,8 +825,14 @@
 
   function saveEntry(){
     const entry = currentEntryFromUI();
+
+    // block future dates (hard validation)
     if(!entry.date){
       $("msg").textContent = "Selectează o dată.";
+      return;
+    }
+    if(isFutureDate(entry.date)){
+      $("msg").textContent = "Nu poți salva pentru zile viitoare. Alege azi sau o zi din trecut.";
       return;
     }
 
@@ -551,8 +841,10 @@
     if(idx >= 0) items[idx] = entry; else items.push(entry);
     saveAll(items);
 
-    $("msg").textContent = `Salvat ✓  Scor: ${entry.score}/100 (${zoneText(entry.score)})`;
-    render();
+    $("msg").textContent = `Salvat ✓  Scor: ${entry.score}/100 (${zone(entry.score).name})`;
+    renderDashboard();
+    // keep journal in sync
+    renderJournal();
   }
 
   function clearAll(){
@@ -560,7 +852,8 @@
     $("notes").value = "";
     QUESTIONS.forEach(q => { $(q.id).value = 3; updateQBadge(q.id, 3); });
     $("msg").textContent = "Datele au fost șterse din acest browser.";
-    render();
+    renderDashboard();
+    renderJournal();
   }
 
   function exportCSV(){
@@ -584,26 +877,47 @@
     $("msg").textContent = "Export făcut ✓";
   }
 
+  function jumpToJournalLatest(){
+    const items = loadAll();
+    refreshJournalModel(items);
+    journalIndex = Math.max(0, journalDates.length - 1);
+    setActiveTab("journal");
+    renderJournal();
+  }
+
   // ---------------- Init ----------------
   buildQuestions();
+  // lock date picker: no future
   $("date").value = todayISO();
+  $("date").max = todayISO();
+
+  // Also prevent manual typing to future dates: still validated on save anyway.
+  $("date").addEventListener("change", () => {
+    if($("date").value && isFutureDate($("date").value)){
+      $("date").value = todayISO();
+      $("msg").textContent = "Zilele viitoare sunt blocate. Am revenit la azi.";
+    }
+  });
+
   QUESTIONS.forEach(q => updateQBadge(q.id, 3));
-  render();
 
-  // live preview score (optional but nice)
-  function preview(){
-    const entry = currentEntryFromUI();
-    $("scoreVal").textContent = entry.score;
-    $("scoreLabel").textContent = scoreLabel(entry.score);
-    $("zonePill").textContent = `Zonă: ${zoneText(entry.score)}`;
-    drawRing(entry.score);
-  }
-  QUESTIONS.forEach(q => $(q.id).addEventListener("input", preview));
-  $("notes").addEventListener("input", () => {}); // no-op (keep simple)
+  renderDashboard();
+  renderJournal();
 
+  // tabs
+  $("tabFill").addEventListener("click", () => setActiveTab("fill"));
+  $("tabJournal").addEventListener("click", () => { setActiveTab("journal"); renderJournal(); });
+
+  // buttons
   $("saveBtn").addEventListener("click", saveEntry);
   $("clearBtn").addEventListener("click", clearAll);
   $("exportBtn").addEventListener("click", exportCSV);
+  $("jumpJournalBtn").addEventListener("click", jumpToJournalLatest);
+
+  // journal nav
+  $("prevBtn").addEventListener("click", () => { journalIndex = Math.max(0, journalIndex-1); renderJournal(); });
+  $("nextBtn").addEventListener("click", () => { journalIndex = Math.min(journalDates.length-1, journalIndex+1); renderJournal(); });
+
 </script>
 </body>
 </html>
